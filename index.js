@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const PORT = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
 
-app.use(express.json({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
 
 const initializeArray = length => {
   const array = [];
@@ -15,6 +18,8 @@ const initializeArray = length => {
 }
 
 app.post('/api/generate', (req, res) => {
+  console.log(req.body);
+
   if (!req.body.length) {
     res.status(400).json({ message: 'Invalid input' });
   }
