@@ -1,0 +1,13 @@
+{
+  "name": "card-flip-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Mirangs",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
