@@ -3,7 +3,7 @@ const app = express();
 
 import cors from 'cors';
 import bodyParser from 'body-parser';
-const PORT = process.env.PORT || 5000;
+import dotenv from 'dotenv';
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -35,4 +35,6 @@ app.post('/api/generate', (req: PostRequest<CardsModel>, res: Response) => {
   res.json({ array });
 });
 
+dotenv.config();
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running at port ${PORT}...`));
