@@ -1,13 +1,14 @@
-const express = require('express');
+import express, { Request, Response } from 'express';
 const app = express();
-const cors = require('cors');
+
+import cors from 'cors';
+import bodyParser from 'body-parser';
 const PORT = process.env.PORT || 5000;
-const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const initializeArray = length => {
+const initializeArray = (length: number) => {
   const array = [];
   while(array.length < length) {
     const item = Math.floor(Math.random() * 100) + 1;
@@ -17,9 +18,15 @@ const initializeArray = length => {
   return array;
 }
 
-app.post('/api/generate', (req, res) => {
-  console.log(req.body);
+interface CardsModel {
+  length: number
+}
 
+interface PostRequest<T> extends Request {
+  body: T
+}
+
+app.post('/api/generate', (req: PostRequest<CardsModel>, res: Response) => {
   if (!req.body.length) {
     res.status(400).json({ message: 'Invalid input' });
   }
